@@ -5,15 +5,9 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Image
-} from 'react-native';
-import { Movie } from './components/Movie'
-import { MovieList } from './components/MovieList'
+import { Platform } from 'react-native';
+import { Movies } from './containers/Movies'
+import { TabNavigator } from 'react-navigation'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -22,31 +16,14 @@ const instructions = Platform.select({
     'Shake or press menu button for dev men',
 });
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <MovieList></MovieList>
-      </View>
-    );
+export default App = TabNavigator({
+  Movies: {
+    screen: Movies,
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+}, {
+  tabBarPosition: 'top',
+  animationEnabled: true,
+  tabBarOptions: {
+    activeTintColor: '#e91e63',
   },
 });
