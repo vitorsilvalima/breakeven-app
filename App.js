@@ -17,13 +17,19 @@ const instructions = Platform.select({
 });
 
 export default App = TabNavigator({
-  Movies: {
+  Windows: {
     screen: Movies,
   }
 }, {
   tabBarPosition: 'top',
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#e91e63',
+    activeTintColor: 'red',
+    labelStyle: {
+      fontSize: 12,
+    },
+    style: {
+      backgroundColor: '#546E7A'
+    },
   },
 });

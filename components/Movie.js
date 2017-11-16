@@ -3,7 +3,8 @@ import { Image, TouchableOpacity, Text, View } from 'react-native';
 
 export const Movie = ({ onPress, movie }) => {
 
-    const { id, poster_path, title } = movie;
+    const { id, poster_path, title, vote_average,release_date } = movie;
+    const year = new Date(release_date).getFullYear();
 
     return(
         <View style={{width: 125, marginLeft: 2 }}>
@@ -23,15 +24,16 @@ export const Movie = ({ onPress, movie }) => {
                 <Image 
                     source={{uri: `https://image.tmdb.org/t/p/w500/${poster_path}`}}
                     style={{width: 125, height: 175}}
-                />
-                <View style={{width: 125, height: 40, flexDirection: 'row', flex: 1}}>
-                    <View style={{flexDirection: 'row', flex: 1, backgroundColor: 'white', height: 40}}>
-                        <Text>fdsfdsfdsfds</Text>
+                >
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end', marginBottom: 20}}>
+                        <View style={{flex: 1, alignItems: 'center'}}>
+                            <Text style={{color: 'white'}}>{vote_average}</Text>
+                        </View>
+                        <View style={{flex: 1, alignItems: 'center'}}>
+                            <Text style={{color: 'white'}}>{year}</Text>
+                        </View>
                     </View>
-                    <View style={{flexDirection: 'row', flex: 1, backgroundColor: 'blue', height: 40}}>
-                        <Text>fdsfdsfds</Text>
-                    </View>
-                </View>
+                </Image>
             </TouchableOpacity>
         </View>
     )

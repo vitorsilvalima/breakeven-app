@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  View
+  ScrollView
 } from 'react-native';
 import { MovieCategory } from '../components/MovieCategory'
 import { movies } from '../mock/movies.json'
@@ -17,9 +17,13 @@ export class Movies extends Component{
 
     render(){
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <MovieCategory name="Categoria" movieList={movies}/>
-            </View>
+                <MovieCategory name="Categoria2" movieList={movies}/>
+                <MovieCategory name="Categoria" movieList={movies}/>
+                <MovieCategory name="Categoria" movieList={movies}/>
+                <MovieCategory name="Categoria" movieList={movies}/> 
+            </ScrollView>
         )
     }
 }
@@ -27,8 +31,7 @@ export class Movies extends Component{
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+      flexDirection: 'column',
       backgroundColor: '#000000',
     },
 });
