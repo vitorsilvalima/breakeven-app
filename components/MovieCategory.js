@@ -13,7 +13,8 @@ export class MovieCategory extends Component{
         this.state = {
             movieList: [],
             total_pages: 1,
-            page: 1
+            page: 1,
+            loading: true,
         }
     }
 
@@ -30,12 +31,17 @@ export class MovieCategory extends Component{
                     movieList: [...movieList, ...body.results],
                     page,
                     total_pages: body.total_pages,
+                    loading: false
                 }))
         }
     }
 
     fetchMore = () => {
-        this.fetchMovieList(this.state.page + 1)
+        if(!this.state.loading){
+            this.setState({loading: true})
+            console.log(this.state.page)
+            this.fetchMovieList(this.state.page + 1)
+        }
     }
 
     render = () =>  (
