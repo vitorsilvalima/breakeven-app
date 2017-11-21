@@ -19,13 +19,12 @@ class Movies extends Component{
 
     componentWillMount(){
         this.props.fetchMovies();
-        console.log("Im here");
     }
 
     render(){
-        const nowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US&page=1'
-        const topRated = 'https://api.themoviedb.org/3/movie/top_rated?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US&page=1'
-        const upComing = 'https://api.themoviedb.org/3/movie/upcoming?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US&page=1'
+        const nowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US'
+        const topRated = 'https://api.themoviedb.org/3/movie/top_rated?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US'
+        const upComing = 'https://api.themoviedb.org/3/movie/upcoming?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US'
         return (
             <ScrollView style={styles.container}>
                 <MovieCategory name="Now Playing" movieURL={nowPlaying}/>

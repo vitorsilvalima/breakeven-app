@@ -11,7 +11,9 @@ export class MovieCategory extends Component{
     constructor(props){
         super(props)
         this.state = {
-            movieList: []
+            movieList: [],
+            total_pages: 1,
+            page: 1
         }
     }
 
@@ -19,17 +21,27 @@ export class MovieCategory extends Component{
         this.fetchMovieList()
     }
     
-    fetchMovieList = () =>{
-        fetch(this.props.movieURL)
-            .then(response => response.json())
-            .then(body => body.results)
-            .then(movieList => this.setState({movieList}))
+    fetchMovieList = (page = 1) =>{
+        if(page <= this.state.total_pages){
+            const { movieList } = this.state
+            fetch(`${this.props.movieURL}&page=${page}`)
+                .then(response => response.json())
+                .then(body => this.setState({
+                    movieList: [...movieList, ...body.results],
+                    page,
+                    total_pages: body.total_pages,
+                }))
+        }
+    }
+
+    fetchMore = () => {
+        this.fetchMovieList(this.state.page + 1)
     }
 
     render = () =>  (
         <View style={styles.container}>
             <Text style={styles.title}>{this.props.name}</Text>
-            <MovieList dataList={this.state.movieList}/>
+            <MovieList fetchMore={this.fetchMore} dataList={this.state.movieList}/>
         </View>
     )
 }
