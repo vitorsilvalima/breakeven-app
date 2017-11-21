@@ -6,12 +6,30 @@ import {
 } from 'react-native';
 import {  MovieList } from './MovieList';
 
-export const MovieCategory = ({ name, movieList }) => {
+export class MovieCategory extends Component{
 
-    return (
+    constructor(props){
+        super(props)
+        this.state = {
+            movieList: []
+        }
+    }
+
+    componentWillMount(){
+        this.fetchMovieList()
+    }
+    
+    fetchMovieList = () =>{
+        fetch(this.props.movieURL)
+            .then(response => response.json())
+            .then(body => body.results)
+            .then(movieList => this.setState({movieList}))
+    }
+
+    render = () =>  (
         <View style={styles.container}>
-            <Text style={styles.title}>{name}</Text>
-            <MovieList dataList={movieList}/>
+            <Text style={styles.title}>{this.props.name}</Text>
+            <MovieList dataList={this.state.movieList}/>
         </View>
     )
 }

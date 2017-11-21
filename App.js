@@ -6,8 +6,9 @@
 
 import React, { Component } from 'react';
 import { Platform } from 'react-native';
-import { Movies } from './containers/Movies'
 import { TabNavigator } from 'react-navigation'
+import  Movies  from './containers/Movies'
+import { Checkout } from './containers/Checkout'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -19,9 +20,12 @@ const instructions = Platform.select({
 export default App = TabNavigator({
   Windows: {
     screen: Movies,
+  },
+  Checkout: {
+    screen: Checkout
   }
 }, {
-  tabBarPosition: 'top',
+  tabBarPosition: 'bottom',
   animationEnabled: true,
   tabBarOptions: {
     activeTintColor: 'red',
