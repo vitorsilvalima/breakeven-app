@@ -24,16 +24,15 @@ export const Movie = ({ onPress, movie }) => {
                 <Image 
                     source={{uri: `https://image.tmdb.org/t/p/w500/${poster_path}`}}
                     style={{width: 125, height: 175}}
-                >
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end', marginBottom: 20}}>
+                />
+                <View style={{flex: 1, flexDirection: 'row', position: 'absolute', bottom: 0, backgroundColor: 'rgba(52, 52, 52, 0.7)' }}>
                         <View style={{flex: 1, alignItems: 'center'}}>
                             <Text style={{color: 'white'}}>{vote_average}</Text>
                         </View>
                         <View style={{flex: 1, alignItems: 'center'}}>
                             <Text style={{color: 'white'}}>{year}</Text>
                         </View>
-                    </View>
-                </Image>
+                </View>
             </TouchableOpacity>
         </View>
     )
