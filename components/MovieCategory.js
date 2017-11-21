@@ -47,7 +47,11 @@ export class MovieCategory extends Component{
     render = () =>  (
         <View style={styles.container}>
             <Text style={styles.title}>{this.props.name}</Text>
-            <MovieList fetchMore={this.fetchMore} dataList={this.state.movieList}/>
+            <MovieList 
+                fetchMore={this.fetchMore} 
+                goToMovieDetail={this.props.goToMovieDetail} 
+                dataList={this.state.movieList}
+            />
         </View>
     )
 }

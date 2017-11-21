@@ -21,17 +21,21 @@ class Movies extends Component{
         this.props.fetchMovies();
     }
 
-    render(){
+    goToMovieDetail = (id) => {
+        this.props.navigation.navigate('MovieDetail', {id})
+    }
+
+    render() {
         const nowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US'
         const topRated = 'https://api.themoviedb.org/3/movie/top_rated?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US'
         const upComing = 'https://api.themoviedb.org/3/movie/upcoming?api_key=60ff436f2769f4f8ddf76ac0cc28a39d&language=en-US'
         return (
             <ScrollView style={styles.container}>
-                <MovieCategory name="Now Playing" movieURL={nowPlaying}/>
-                <MovieCategory name="Top Rated" movieURL={topRated}/>
-                <MovieCategory name="Up Coming" movieURL={upComing}/>
-                <MovieCategory name="Categoria" movieURL={topRated}/>
-                <MovieCategory name="Categoria" movieURL={topRated}/> 
+                <MovieCategory goToMovieDetail={this.goToMovieDetail} name="Now Playing" movieURL={nowPlaying}/>
+                <MovieCategory goToMovieDetail={this.goToMovieDetail} name="Top Rated" movieURL={topRated}/>
+                <MovieCategory goToMovieDetail={this.goToMovieDetail} name="Up Coming" movieURL={upComing}/>
+                <MovieCategory goToMovieDetail={this.goToMovieDetail} name="Categoria" movieURL={topRated}/>
+                <MovieCategory goToMovieDetail={this.goToMovieDetail} name="Categoria" movieURL={topRated}/> 
             </ScrollView>
         )
     }
