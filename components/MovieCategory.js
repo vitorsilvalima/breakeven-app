@@ -21,6 +21,10 @@ export class MovieCategory extends Component{
     componentWillMount(){
         this.fetchMovieList()
     }
+
+    shouldComponentUpdate(nextProps, nextState){
+        return !nextState.loading
+    }
     
     fetchMovieList = (page = 1) =>{
         if(page <= this.state.total_pages){
@@ -38,13 +42,13 @@ export class MovieCategory extends Component{
 
     fetchMore = () => {
         if(!this.state.loading){
-            this.setState({loading: true})
-            console.log(this.state.page)
-            this.fetchMovieList(this.state.page + 1)
+            this.setState({loading: true}, () =>{
+                this.fetchMovieList(this.state.page + 1)
+            })
         }
     }
 
-    render = () =>  (
+    render = () => (
         <View style={styles.container}>
             <Text style={styles.title}>{this.props.name}</Text>
             <MovieList 

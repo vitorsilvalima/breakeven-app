@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { Movie } from './Movie';
 
+
 export const MovieList = ({dataList, fetchMore, goToMovieDetail}) =>  {
 
     return (<FlatList 
-        data={dataList}
-        keyExtractor={item => item.id}
+        data={dataList.map((movie, index) => Object.assign({}, movie, {key: index}))}
         horizontal
         bounces={false}
-        extraData={dataList}
-        onEndReachedThreshold={.7}
+        extraData={dataList.length}
+        onEndReachedThreshold={.5}
         onEndReached={fetchMore}
-        ItemSeparatorComponent={() => <View style={ { width: 5, height: 10 }}/>}
-        renderItem = {({item}) => <Movie movie={item} onPress={goToMovieDetail}></Movie>}
+        ItemSeparatorComponent={() => <View style={ { width: 50, height: 10, backgroundColor: 'black' }}/>}
+        renderItem = {({item}) => <Movie movie={item} onPress={goToMovieDetail}/>}
     />)
 }
