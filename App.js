@@ -19,30 +19,17 @@ const instructions = Platform.select({
 });
 
 
-const routeConfiguration = {
-	Movies: { screen: Movies },
-	MovieDetail: { 
-    screen: MovieDetail,
-    path: 'movies/:id',
-  },
-};
-
-const stackNavigatorConfiguration = {
-	headerMode: 'none',
-	initialRoute: 'Movies'
-};
-
-export const tabOne = StackNavigator(routeConfiguration, stackNavigatorConfiguration);
-
-
-export default App = TabNavigator({
+const Tabs = TabNavigator({
   Movies: {
-    screen: tabOne,
+    screen: Movies,
+    navigationOptions: { header: null }
   },
   Checkout: {
-    screen: Checkout
+    screen: Checkout,
+    navigationOptions: { header: null }
   }
 }, {
+  swipeEnabled: false,
   tabBarPosition: 'bottom',
   animationEnabled: true,
   tabBarOptions: {
@@ -55,3 +42,19 @@ export default App = TabNavigator({
     },
   },
 });
+
+
+const routeConfiguration = {
+	Tabs: { screen: Tabs },
+	MovieDetail: { 
+    screen: MovieDetail,
+    path: 'movies/:id',
+  },
+};
+
+const stackNavigatorConfiguration = {
+  initialRoute: 'Tabs',
+  headerMode: 'screen'
+};
+
+export default App = StackNavigator(routeConfiguration, stackNavigatorConfiguration);

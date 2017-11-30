@@ -9,8 +9,16 @@ import {
 
 export class MovieDetail extends Component{
     static navigationOptions = {
-        tabBarVisible: false,
-        headerMode: 'screen',
+        title: 'Movie Detail',
+        headerTintColor: 'white',
+        headerStyle: {
+          backgroundColor: 'black',
+          borderBottomColor: 'red',
+          borderBottomWidth: 2,
+        },
+        headerTitleStyle: {
+          fontSize: 18,
+        },
     };
 
     constructor(props){
@@ -49,7 +57,7 @@ export class MovieDetail extends Component{
                 backgroundColor: 'black',
                 flex: 1,
                 flexDirection: 'column',
-                margin: 10
+                padding: 10
             }}>
                 <Text style={{color: 'white'}}>{title}</Text>
                 <Image 

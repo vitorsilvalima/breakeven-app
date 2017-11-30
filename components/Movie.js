@@ -22,7 +22,8 @@ export class Movie extends PureComponent {
                         {title}
                     </Text>
                     <Image 
-                        source={{uri: `https://image.tmdb.org/t/p/w500/${poster_path}`}}
+                        source={{uri: `https://image.tmdb.org/t/p/w185/${poster_path}`}}
+
                         style={styles.imageCover}
                     />
                     <View style={styles.score}>
