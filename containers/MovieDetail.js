@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, Right } from 'native-base';
+
 import {
     StyleSheet,
-    Text,
     View,
     Image, 
-    Dimensions
+    Dimensions,
+
 } from 'react-native'; 
 
 export class MovieDetail extends Component{
@@ -49,23 +53,64 @@ export class MovieDetail extends Component{
     render = () => {
         const { 
             backdrop_path,
-            title
+            title,
+            vote_average,
+            revenue,
+            overview,
+            release_date
         } = this.state.movie
+        const releaseYear = (release_date + '').substr(0, 4);
 
         return (
-            <View style={{
-                backgroundColor: 'black',
-                flex: 1,
-                flexDirection: 'column',
-                padding: 10
-            }}>
-                <Text style={{color: 'white'}}>{title}</Text>
-                <Image 
-                    source={{uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`}}
-                    style={{
-                        width: Dimensions.get('screen').width,
-                        height: 200
-                    }}/>
-            </View>)
+            <Container  style={{backgroundColor: 'black'}}>
+                <Content>
+                <Card style={{flex: 0}}>
+                    <CardItem>
+                        <Left>
+                            <Body>
+                                <Text>{title}</Text>
+                            </Body>
+                        </Left>
+                    </CardItem>
+                    <CardItem cardBody>
+                        <Image 
+                            source={{uri: `https://image.tmdb.org/t/p/w500/${backdrop_path}`}}
+                            style={{height: 200, width: null, flex: 1}}
+                        />
+                    </CardItem>
+                    <CardItem>
+                        <Left>
+                            <Button transparent>
+                                <Icon active name="star" size={20}/>
+                                <Text>{vote_average}</Text>
+                            </Button>
+                        </Left>
+                        <Body>
+                            <Button transparent>
+                                <Icon active name="money" size={20}/>
+                                <Text>{revenue}</Text>
+                            </Button>
+                        </Body>
+                        <Right>
+                            <Button transparent>
+                                <Icon active name="calendar" size={20}/>
+                                <Text>{releaseYear}</Text>
+                            </Button>
+                        </Right>
+                    </CardItem>
+                    <CardItem>
+                        <Body>
+                            <Text>
+                                {overview}
+                            </Text>
+                            <Button block>
+                                <Text>ADD TO CART</Text>
+                            </Button>
+                        </Body>
+                    </CardItem>
+                </Card>
+                </Content>
+            </Container>
+        )
     }
 }
