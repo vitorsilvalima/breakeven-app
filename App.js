@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import  Movies  from './containers/Movies'
-import { Checkout } from './containers/Checkout'
+import { MovieCart } from './containers/MovieCart'
 import { MovieDetail } from './containers/MovieDetail'
 
 const instructions = Platform.select({
@@ -24,11 +24,12 @@ const Tabs = TabNavigator({
     screen: Movies,
     navigationOptions: { header: null }
   },
-  Checkout: {
-    screen: Checkout,
+  MovieCart: {
+    screen: MovieCart,
     navigationOptions: { header: null }
   }
 }, {
+  initialRouteName: 'Movies',
   swipeEnabled: false,
   tabBarPosition: 'bottom',
   animationEnabled: true,
