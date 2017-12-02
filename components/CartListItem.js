@@ -9,28 +9,39 @@ import {
 import { Button, Icon, Text } from 'native-base';
 
 export const CartListItem = ({
-    movieID = 19404, 
-    movieName = 'Harry Potter',
-    qtd = 0,
+    movie: { 
+        backdrop_path,
+        title,
+        quantity,
+    },
+    movie,
+    addToCart,
+    removeFromCart,
     price = 10,
-    backdropPath="/nl79FQ8xWZkhL3rDr1v2RFFR6J0.jpg"}
-) => {
+}) => {
 
     return(<View style={styles.containerStyle}>
         <Image
             style={{flex: 1}}
-            source={{uri: `https://image.tmdb.org/t/p/w185/${backdropPath}`}}
+            source={{uri: `https://image.tmdb.org/t/p/w185/${backdrop_path}`}}
         />
         <View style={styles.detailStyle}>
-            <Text style={styles.textDetail}>{movieName}</Text>
+            <Text style={styles.textDetail}>{title}</Text>
             <Text style={styles.textDetail}>${price}</Text>
         </View>
         <View style={styles.qtdView}>
-            <Button dark style={styles.qtdButton}>
+            <Button 
+                dark
+                style={styles.qtdButton}
+                onPress={() => addToCart(movie)}
+            >
                 <Icon active name='md-add' />
             </Button>
-            <Text>{qtd}</Text>
-            <Button dark>
+            <Text style={{color: 'white'}}>{quantity}</Text>
+            <Button 
+                dark
+                onPress={() => removeFromCart(movie)}
+                >
                 <Icon active name='md-remove' />
             </Button>
         </View>

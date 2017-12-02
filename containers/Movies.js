@@ -42,7 +42,7 @@ class Movies extends Component{
 }
 
 const mapStateToProps = (state) => ({
-    movies: state
+    movies: state.movies
 })
 
 const mapDispatchToProps = (dispatch) => ({

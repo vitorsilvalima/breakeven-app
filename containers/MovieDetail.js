@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, Right } from 'native-base';
+import { connect } from 'react-redux'
+import { addToCart } from '../redux/cart'
 
 import {
     StyleSheet,
@@ -11,7 +12,7 @@ import {
 
 } from 'react-native'; 
 
-export class MovieDetail extends Component{
+class MovieDetail extends Component{
     static navigationOptions = {
         title: 'Movie Detail',
         headerTintColor: 'white',
@@ -103,7 +104,7 @@ export class MovieDetail extends Component{
                             <Text>
                                 {overview}
                             </Text>
-                            <Button block>
+                            <Button block danger onPress={() => this.props.addToCart(this.state.movie)}>
                                 <Text>ADD TO CART</Text>
                             </Button>
                         </Body>
@@ -114,3 +115,13 @@ export class MovieDetail extends Component{
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    cart: state.cart
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    addToCart: movie => dispatch(addToCart(movie))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail)

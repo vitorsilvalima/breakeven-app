@@ -8,8 +8,8 @@ import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import  Movies  from './containers/Movies'
-import { MovieCart } from './containers/MovieCart'
-import { MovieDetail } from './containers/MovieDetail'
+import MovieCart from './containers/MovieCart'
+import MovieDetail  from './containers/MovieDetail'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
